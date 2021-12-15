@@ -19,15 +19,15 @@ Only supported Debian/Ubuntu
 Following those steps, they will help you to finish it.
 
 ```bash
-git clone https://github.com/SUIBING112233/shell-utils.git ~/shell-utils
+git clone https://github.com/SUIBING112233/shell-utils.git $HOME/shell-utils
 ```
 
 If zsh, you should edit `.zshrc` file; If bash, you should edit `.bashrc`.
 
 Add those to the end of file.
 
-```
-export PATH=$PATH:~/shell-utils/bin
+```bash
+export PATH=$PATH:$HOME/shell-utils/bin
 ```
 
 OK, done it.
