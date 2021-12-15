@@ -2,16 +2,6 @@
 
 # Author:SUIBING112233
 
-function check() {
-    if [ -d $HOME/esp/esp-idf/examples/get-started/sample_project ]; then
-        echo "command new   : OK"
-    fi
-    if [ -f $HOME/esp/esp-idf/tools/idf.py ]; then
-        echo "command build : OK"
-        echo "command clean : OK"
-    fi
-}
-
 function setup() {
 
     if [ $2 == "cn" ]; then
@@ -33,18 +23,21 @@ function setup() {
 }
 
 function build() {
-    . $HOME/esp/esp-idf/export.sh
-
+    init
     $HOME/esp/esp-idf/tools/idf.py build
 }
 
 function clean() {
-    . $HOME/esp/esp-idf/export.sh
+    init
     $HOME/esp/esp-idf/tools/idf.py clean
 }
 
 function new() {
     cp -rf $HOME/esp/esp-idf/examples/get-started/sample_project/ ./$1
+}
+
+function init() {
+    . $HOME/esp/esp-idf/export.sh >>/dev/null
 }
 
 if [ $# == 0 ]; then
@@ -77,9 +70,6 @@ if [ $# == 0 ]; then
     echo "  build [quiet]"
     echo "      This command will build your esp-if project."
     echo
-    echo "  check"
-    echo "      This command confirms what functions are available to you."
-    echo
     echo "  new {name}"
     echo "      This command will setup a new project for you."
     echo
@@ -88,8 +78,6 @@ elif [ $1 == "setup" ]; then
     setup
 elif [ $1 == "build" ]; then
     build
-elif [ $1 == "check" ]; then
-    check
 elif [ $1 == "clean" ]; then
     clean
 elif [ $1 == "new" ]; then
